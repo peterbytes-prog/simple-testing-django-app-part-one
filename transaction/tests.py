@@ -59,3 +59,11 @@ class TransactionIndexViewTests(TestCase):
         #html assert ignore valuable content of html like textContent  while ignoring entity like classname id or spaces
         self.assertHTMLEqual(str(li), '<li     >Laptop_2_1000.0</li>')
         self.assertInHTML('<li>Laptop_2_1000.0</li>', str(response.content))
+    @unittest.skip("This will be skipped")
+    def test_skipping(self):
+        self.assertEqual("This test must be skipped",3)
+    
+    def test_skipping_within(self):
+        self.assertEqual("This test must be run first","This test must be run first")
+        self.skipTest("will skip this test too")
+        self.assertEqual("This test must be skipped",3)
