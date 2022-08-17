@@ -1,0 +1,18 @@
+[{
+    "model": "transaction.Transaction",
+    "pk":1,
+    "fields":{
+        "product_code": "Laptop",
+        "quantity": 2,
+        "price": 1000
+    }
+},
+{
+    "model": "transaction.Transaction",
+    "pk":2,
+    "fields":{
+        "product_code": "PC",
+        "quantity": 1,
+        "price": 500
+    }
+}]
