@@ -35,3 +35,20 @@ class TransactionIndexViewTests(TestCase):
         )
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(Transaction.objects.all()), 2)
+    def test_valid_form_submission(self):
+        response = self.client.post(
+            "/transaction/",
+            data ={
+                "product_code":"p123",
+                "quantity":1,
+                "price":89
+            }
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(len(Transaction.objects.all()), 3)
+        self.assertIn("POS", str(response.content)) #POS is the page title
+        self.assertContains(response, "POS", 1) #unlike In test contains specify num of substring instance
+    def test_count_of_transactions_in_report(self):
+        response = self.client.get(reverse('report:index'))
+        self.assertContains(response, "POS Report", 1)
+        self.assertContains(response, "<li>", 2)
