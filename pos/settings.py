@@ -28,6 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+TRANSACTION_URL = 'transaction'
 # Application definition
 
 INSTALLED_APPS = [
