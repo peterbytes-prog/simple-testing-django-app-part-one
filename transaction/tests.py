@@ -52,3 +52,10 @@ class TransactionIndexViewTests(TestCase):
         response = self.client.get(reverse('report:index'))
         self.assertContains(response, "POS Report", 1)
         self.assertContains(response, "<li>", 2)
+    def test_html(self):
+        response = self.client.get(reverse('report:index'))
+        soup = BeautifulSoup(str(response.content))
+        li = soup.find_all('li')[0]
+        #html assert ignore valuable content of html like textContent  while ignoring entity like classname id or spaces
+        self.assertHTMLEqual(str(li), '<li     >Laptop_2_1000.0</li>')
+        self.assertInHTML('<li>Laptop_2_1000.0</li>', str(response.content))
